@@ -10,9 +10,9 @@ When a new item is selected from the list, the previous item will be unsubscribe
 
 ### Technologies
 
-- [React - create-react-app](https://github.com/facebook/create-react-app)
+- [React](https://github.com/facebook/create-react-app)
 - [TailwindCSS](https://tailwindcss.com)
-- [Downshift - for dropdown](https://github.com/downshift-js/downshift)
+- [Downshift](https://github.com/downshift-js/downshift)
 
 ### How to run
 
@@ -24,4 +24,5 @@ When a new item is selected from the list, the previous item will be unsubscribe
 ### External Links
 
 Bitstamp API for trading pairs: https://www.bitstamp.net/api/v2/trading-pairs-info/
+
 Bitstamp streaming API: https://www.bitstamp.net/websocket/v2/
