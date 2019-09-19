@@ -2,13 +2,11 @@ import React from 'react'
 import Downshift from 'downshift'
 
 function Dropdown({ items }) {
-  console.log(items)
   return (
     <Downshift
       // onChange={onChange}
       itemToString={item => (item ? item.name : '')}
       isOpen={true}
-      // initialHighlightedIndex={initialHighlightedIndex}
     >
       {({
         getInputProps,
@@ -18,27 +16,25 @@ function Dropdown({ items }) {
         inputValue,
         highlightedIndex
       }) => (
-        <div className='relative'>
-          {/* <FaSearch className='text-gray-400 z-10 ml-4 mt-5 absolute left-0 top-0 text-lg' /> */}
+        <div className='w-full shadow-xl h-96 md:h-128 overflow-y-scroll overflow-x-hidden bg-white rounded-lg py-6 px-2'>
           <input
-            autoFocus
-            className='block w-full pl-6 text-lg py-3 border-b-2 border-gray-200 mx-4 outline-none'
+            className='block w-full rounded text-lg py-3 border-b-2 border-gray-200 outline-none mx-4'
             placeholder='Search trading pairs'
             {...getInputProps()}
           />
           <ul {...getMenuProps()} className='my-3'>
             {isOpen
               ? items
-                  // .filter(
-                  //   tradingPair =>
-                  //     !inputValue.toLowerCase() ||
-                  //     tradingPair.name
-                  //       .toLowerCase()
-                  //       .includes(inputValue.toLowerCase()) ||
-                  //     tradingPair.description
-                  //       .toLowerCase()
-                  //       .includes(inputValue.toLowerCase())
-                  // )
+                  .filter(
+                    item =>
+                      !inputValue.toLowerCase() ||
+                      item.name
+                        .toLowerCase()
+                        .includes(inputValue.toLowerCase()) ||
+                      item.description
+                        .toLowerCase()
+                        .includes(inputValue.toLowerCase())
+                  )
                   .map((item, index) => (
                     <li
                       {...getItemProps({
@@ -46,13 +42,20 @@ function Dropdown({ items }) {
                         index,
                         item
                       })}
-                      className='flex justify-between items-center'
+                      className={`flex justify-between items-center py-3 border-b-2 border-gray-100 px-4 ${highlightedIndex ===
+                        index && 'bg-gray-100 cursor-pointer'}`}
                     >
                       <div>
-                        <span className='block'>{item.name}</span>
-                        <span className='block'>{item.description}</span>
+                        <span className='block text-indigo-600 text-lg font-semibold'>
+                          {item.name}
+                        </span>
+                        <span className='block text-gray-500 text-base'>
+                          {item.description}
+                        </span>
                       </div>
-                      <div>{item.minimum_order}</div>
+                      <div className='text-indigo-600 text-base font-semibold'>
+                        {item.minimum_order}
+                      </div>
                     </li>
                   ))
               : null}
