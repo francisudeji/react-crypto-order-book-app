@@ -1,10 +1,10 @@
 import React from 'react'
 import Downshift from 'downshift'
 
-function Dropdown({ items }) {
+function Dropdown({ items, onChange }) {
   return (
     <Downshift
-      // onChange={onChange}
+      onChange={onChange}
       itemToString={item => (item ? item.name : '')}
       isOpen={true}
     >

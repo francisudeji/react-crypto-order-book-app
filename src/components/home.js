@@ -1,53 +1,26 @@
-import React, { useState, useEffect } from 'react'
-// import Dropdown from './dropdown'
+import React from 'react'
 import Spinner from './spinner'
 import Dropdown from './dropdown'
+import { useAppContext } from '../hooks/app-context'
 
-function Home() {
-  const [tradingPairs, setTradingPairs] = useState([])
+function Home({ history }) {
+  const [{ orderPairs, loadingOrderPairs }] = useAppContext()
 
-  useEffect(() => {
-    const url = 'https://www.bitstamp.net/api/v2/trading-pairs-info/'
-    const getTradingPairs = async () => {
-      const response = await fetch(url)
-      const data = await response.text()
-      setTradingPairs(JSON.parse(data))
-
-      // const response2 = await fetch(
-      //   'https://www.bitstamp.net/api/order_book/ltcusd'
-      // )
-      // const data2 = await response2.json()
-      // console.log({ data2 })
-
-      // const message = {
-      //   event: 'bts:subscribe',
-      //   data: {
-      //     channel: 'order_book_ltcusd'
-      //   }
-      // }
-      // const webSocket = new WebSocket('wss://ws.bitstamp.net')
-      // webSocket.onopen = () => {
-      //   webSocket.send(JSON.stringify(message))
-      // }
-
-      // webSocket.onmessage = evt => {
-      //   console.log(JSON.parse(evt.data))
-      // }
-    }
-    getTradingPairs()
-  }, [])
+  const handleChange = selection => {
+    history.push(`/${selection.url_symbol}`)
+  }
 
   return (
     <div className='home flex flex-col items-center justify-center h-100vh'>
       <h1 className='text-center text-indigo-500 mx-auto font-bold text-3xl mb-6 tracking-wide'>
-        Trading Pairs
+        {loadingOrderPairs ? 'Loading' : 'Select'} Order Pairs
       </h1>
-      {tradingPairs.length > 0 ? (
+      {!loadingOrderPairs ? (
         <>
-          <Dropdown items={tradingPairs} />
+          <Dropdown items={orderPairs} onChange={handleChange} />
           <a
             href='https://github.com/francisudeji/react-crypto-order-book-app'
-            className='uppercase text-gray-500 mt-6 text-base tracking-wide text-center font-bold hover:underline'
+            className='uppercase text-gray-500 mt-6 text-base tracking-wide text-center font-bold hover:underline my-6'
           >
             GITHUB
           </a>
