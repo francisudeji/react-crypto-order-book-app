@@ -56,7 +56,7 @@ function OrderBook({
   }, [currency_pair, dispatch, orderPairs])
 
   return (
-    <div className='home flex flex-col items-center justify-center'>
+    <div className='home'>
       {!loadingOrderBook ? (
         <div>
           <div className='w-full flex justify-between my-10'>
