@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from './components/home'
 import OrderBook from './components/order-book'
-import { Provider } from './hooks/app-context'
+import { Provider } from './app-context'
 
 function App() {
   return (
