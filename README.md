@@ -19,7 +19,7 @@ When a new item is selected from the list, the previous item will be unsubscribe
 - Clone this repo by running `git clone https://github.com/francisudeji/react-crypto-order-book-app.git` in your terminal or by downloading manually.
 - `cd` into the project folder
 - Run `npm install` or `yarn` to install dependencies, I used yarn.
-- Wait for development server to kickoff and visit https://localhost:3000 to see the app.
+- Wait for development server to kickoff and visit http://localhost:3000 to see the app.
 
 ### External Links
 
